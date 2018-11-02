@@ -1,0 +1,24 @@
+{
+  "name": "1day-meeting",
+  "version": "1.0.0",
+  "description": "One day meeting application",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.6.0",
+    "parcel-bundler": "^1.6.1"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js}"
+    ]
+  }
+}

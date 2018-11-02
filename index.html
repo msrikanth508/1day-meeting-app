@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1Day-Meeting</title>
+    <link href="./src/CSS/styles.css" rel="stylesheet">
+    <link href="./src/CSS/Modal.css" rel="stylesheet">
+    <link rel="icon" href="./favicon.ico">
+</head>
+<body>
+    <header>1Day-Meeting</header>
+    <div id="root"></div>
+    <div id="modal" class="modal"></div>
+    <div class="add">&#43;</div>
+    <! Modal template -->
+    <template id="modal-template">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Meeting</h2>
+              </div>
+              <div class="modal-body">
+                <form>
+                    <section>
+                        <h3>Title</h3>
+                        <input type="text" id="meeting-title" />
+                    </section>
+                    <section>
+                        <h3>Start Time</h3>
+                        <span id="start-time"></span>
+                    </section>
+                    <section>
+                        <h3>End Time</h3>
+                        <span id="end-time"></span>
+                    </section>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button class="btn close">Cancel</button>
+                <button class="btn submit">Create</button>
+              </div>
+          </div>
+      </template>
+    <script src="./src/index.js" type="application/javascript"></script>
+</body>
+</html>
