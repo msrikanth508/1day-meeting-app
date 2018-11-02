@@ -1,6 +1,6 @@
 ## 1day Meeting App
 
-### This vanila JS application will be used to create 1 day meetings from 9AM to 9PM.
+### This vanilla JS application will be used to create 1 day meetings from 9AM to 9PM.
 
 ## Development
 ```javascript
