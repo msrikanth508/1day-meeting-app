@@ -21,7 +21,7 @@ npm test --coverage
 ## Build
 
 ```javascript
-npm build
+npm run build
 ```
 
 ## License

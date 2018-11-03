@@ -57,7 +57,7 @@ export default class Layout {
       DomUtils.createElement(rulerElement, {
         type: "div",
         props: {
-          innerText: `${DomUtils.formatAsTwoDigits(9 + i)}:00`,
+          innerText: `${DomUtils.formatAsTwoDigits(9 + i)}:00--`,
           className: "app__ruler--label"
         }
       });

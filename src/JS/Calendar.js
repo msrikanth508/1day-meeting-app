@@ -1,9 +1,8 @@
 import Event from "./Event";
-import data from "./eventsData";
 
 /**
- * Calendar
  *
+ * Calendar
  * @export
  * @class Calendar
  */
@@ -20,53 +19,37 @@ export default class Calendar {
   getEvents() {
     // sort all events
     this.events.sort((a, b) => a.start - b.start);
-    
-    const results = [];
-    const totalEvents = this.events.length;
 
-    // find overlapping events
-    for (let i = 0; i < totalEvents; i++) {
-      let pEvent = this.events[i];
-      let nOverlaps = 0;
-      for (let j = 0; j < totalEvents; j++) {
-        var nEvent = this.events[j];
-        if (
-          (nEvent.start < pEvent.end && nEvent.end > pEvent.start) ||
-          (nEvent.end < pEvent.start && nEvent.start > pEvent.end)
-        ) {
-          nOverlaps++;
-        }
+    const groups = [];
+    let output = [];
+    const totalWidth = 600;
+    let currentGroup;
+    let lastEnd = -1;
+
+    this.events.forEach((event, index) => {
+      if (!currentGroup || lastEnd <= event.start) {
+        currentGroup = [];
+        groups.push(currentGroup);
       }
+      currentGroup.push(event);
+      lastEnd = Math.max(lastEnd, event.end);
+    });
 
-      results.push({
-        ...pEvent,
-        eventCount: nOverlaps
-      });
-    }
+    groups.forEach(group => {
+      const width = totalWidth / group.length;
+      output = group.reduce((acc, item, index) => {
+        acc.push({
+          ...item,
+          bottom: `${item.start * 2}px`, // 1min = 2px;
+          height: `${(item.end - item.start) * 2}px`,
+          left: `${width * index}px`,
+          width: `${width}px`
+        });
+        return acc;
+      }, output);
+    });
 
-    let totalOverlap = 600;
-    let prevEventCount;
-    return results.reduce((acc, item) => {
-      prevEventCount = item.eventCount;
-      const width = 600 / item.eventCount;
-      let left = 0;
-      if (item.eventCount !== 1) {
-        left = `${totalOverlap - width}px`;
-        totalOverlap -= width;
-      }
-      acc.push({
-        ...item,
-        bottom: `${item.start * 2}px`,
-        height: `${(item.end - item.start) * 2}px`,
-        left,
-        width: `${width}px`
-      });
-
-      if (totalOverlap === 0) {
-        totalOverlap = 600;
-      }
-      return acc;
-    }, []);
+    return output;
   }
   /**
    *
